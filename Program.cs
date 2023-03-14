@@ -1,33 +1,44 @@
-﻿//  Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+﻿//Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает 
+//значение этого элемента или же указание, что такого элемента нет.
 //Например, задан массив:
 //1 4 7 2
 //5 9 2 3
 //8 4 2 4
-//Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
+//17 -> такого числа в массиве нет
 
-using System;
-using static System.Console;
+int rows = ReadInt("Введите номер строки: ");
+int colums = ReadInt("Введите номер столбца: ");
+int[,] nums = new int[3,4];
+FillArray(nums);
+PrintArray(nums);
 
-int[,] arr = new int[3,4];
+if (rows < nums.GetLength(0) && colums < nums.GetLength(1)) Console.WriteLine(nums[rows, colums]);
+else Console.WriteLine($"{rows}{colums} - такого числа в массиве нет");
 
-for (int i = 0; i < arr.GetLength(0); i++)
+void FillArray(int[,] array)
 {
-    for (int j = 0; j < arr.GetLength(1); j++)
+    for(int k = 0; k < array.GetLength(0); k++)
     {
-        arr[i, j] = new Random().Next(1, 10);
-        Write(arr[i, j] + " ");
+        for(int i = 0; i < array.GetLength(1); i++)
+        {
+            array[k,i] = new Random().Next(1,10);
+        }
     }
-    WriteLine();
 }
-WriteLine(arr.GetLength(0));
-
-for (int j = 0; j < arr.GetLength(1); j++)
+void PrintArray(int[,] array)
 {
-    double sum = 0;
-    for (int i = 0; i < arr.GetLength(0); i++)
+    for(int k = 0; k < array.GetLength(0); k++)
     {
-        sum += arr[i, j];
+        for(int i = 0; i < array.GetLength(1); i++)
+        {
+            Console.Write(array[k,i] + " ");
+        }
+        Console.WriteLine();
     }
-    Write($"{sum / arr.GetLength(0)} ");
+    Console.WriteLine();
 }
-ReadLine();
+int ReadInt(string message)
+{
+    Console.Write(message);
+    return Convert.ToInt32(Console.ReadLine());
+}
