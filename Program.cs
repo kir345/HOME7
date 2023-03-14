@@ -1,31 +1,26 @@
-﻿//Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает 
-//значение этого элемента или же указание, что такого элемента нет.
-//Например, задан массив:
-//1 4 7 2
-//5 9 2 3
-//8 4 2 4
-//17 -> такого числа в массиве нет
+﻿// Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
+//m = 3, n = 4.
+//0,5 7 -2 -0,2
+//1 -3,3 8 -9,9
+//8 7,8 -7,1 9
 
-int rows = ReadInt("Введите номер строки: ");
-int colums = ReadInt("Введите номер столбца: ");
-int[,] nums = new int[3,4];
+int rows = ReadInt("Введите количество строк: ");
+int colums = ReadInt("Введите количество столбцов: ");
+double[,] nums = new double[3,4];
 FillArray(nums);
 PrintArray(nums);
 
-if (rows < nums.GetLength(0) && colums < nums.GetLength(1)) Console.WriteLine(nums[rows, colums]);
-else Console.WriteLine($"{rows}{colums} - такого числа в массиве нет");
-
-void FillArray(int[,] array)
+void FillArray(double[,] array)
 {
     for(int k = 0; k < array.GetLength(0); k++)
     {
         for(int i = 0; i < array.GetLength(1); i++)
         {
-            array[k,i] = new Random().Next(1,10);
+            array[k,i] = new Random().Next(10);
         }
     }
 }
-void PrintArray(int[,] array)
+void PrintArray(double[,] array)
 {
     for(int k = 0; k < array.GetLength(0); k++)
     {
